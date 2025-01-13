@@ -1,7 +1,8 @@
 // lib/domain/entities/get_tasks_test.dart
+// lib/domain/entities/task.dart
 class Task {
   final int id;
-  final String title;
+  final int title;
   final String description;
   final bool completed;
 
@@ -11,4 +12,20 @@ class Task {
     required this.description,
     required this.completed,
   });
+
+  // Add copyWith method
+  Task copyWith({
+    int? id,
+    int? title,
+    String? description,
+    bool? completed,
+  }) {
+    return Task(
+      id: id ?? this.id,
+      title: title ?? this.title,
+      description: description ?? this.description,
+      completed: completed ?? this.completed,
+    );
+  }
 }
+

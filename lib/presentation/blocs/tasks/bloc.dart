@@ -1,11 +1,7 @@
-// lib/presentation/bloc/tasks_state.dart
-import 'package:equatable/equatable.dart';
-import 'package:tasks_manager/presentation/blocs/tasks/states.dart';
-import '../../../domain/entities/task.dart';
 
-// lib/presentation/bloc/tasks_bloc.dart
+import 'package:tasks_manager/presentation/blocs/tasks/states.dart';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:equatable/equatable.dart';
 
 
 

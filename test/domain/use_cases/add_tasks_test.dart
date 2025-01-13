@@ -16,7 +16,7 @@ void main() {
     useCase = AddTask(mockRepository);
   });
 
-  final task = Task(id: 1, title: 'New Task', description: 'Description', completed: false);
+  final task = Task(id: 1, title: 152, description: 'Description', completed: false);
 
   test('should add a task to the repository', () async {
     // Arrange

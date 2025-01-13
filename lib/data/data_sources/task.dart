@@ -1,5 +1,6 @@
 // lib/data/sources/task_remote_data_source.dart
 import 'dart:convert';
+import 'dart:developer';
 import 'package:http/http.dart' as http;
 
 import '../models/task.dart';
@@ -19,9 +20,11 @@ class TaskRemoteDataSourceImpl implements TaskRemoteDataSource {
 
   @override
   Future<List<TaskModel>> fetchTasks({required int limit, required int skip}) async {
-    final response = await client.get(Uri.parse('$baseUrl?limit=$limit&skip=$skip'));
+    final response = await http.get(Uri.parse('$baseUrl?limit=$limit&skip=$skip'));
     if (response.statusCode == 200) {
+      log(response.statusCode.toString());
       final data = json.decode(response.body)['todos'] as List;
+      log(data.toString());
       return data.map((task) => TaskModel.fromJson(task)).toList();
     } else {
       throw Exception('Failed to fetch tasks');

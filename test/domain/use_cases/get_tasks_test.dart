@@ -18,7 +18,7 @@ void main() {
   });
 
   final tasks = [
-    Task(id: 1, title: 'Test Task', description: 'Description', completed: false),
+    Task(id: 1, title: 152, description: 'Description', completed: false),
   ];
 
   test('should fetch tasks from the repository', () async {

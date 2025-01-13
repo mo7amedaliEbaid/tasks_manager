@@ -1,4 +1,4 @@
-// lib/presentation/bloc/tasks_state.dart
+
 import 'package:equatable/equatable.dart';
 
 import '../../../domain/entities/task.dart';

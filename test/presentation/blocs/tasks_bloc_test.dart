@@ -35,7 +35,7 @@ void main() {
     );
   });
 
-  var tTask = Task(id: 1, title: 'Test Task', description: 'Test Desc', completed: false);
+  var tTask = Task(id: 1, title: 152, description: 'Test Desc', completed: false);
 
   group('TasksBloc', () {
     blocTest<TasksBloc, TasksState>(
