@@ -2,7 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/widgets.dart';
 
-import 'main.dart';
+import 'gooey_main.dart';
 
 class SunAndMoon extends StatefulWidget {
   final bool? isDragComplete;

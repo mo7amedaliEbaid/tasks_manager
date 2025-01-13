@@ -4,7 +4,6 @@ import 'package:flutter/scheduler.dart';
 import 'components/sprite_sheet.dart';
 import 'demo_data.dart';
 import 'list_model.dart';
-import 'main.dart';
 import 'particle_field.dart';
 import 'particle_field_painter.dart';
 import 'removed_swipe_item.dart';

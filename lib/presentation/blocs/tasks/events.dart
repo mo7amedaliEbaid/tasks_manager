@@ -23,8 +23,9 @@ class LoadTasks extends TasksEvent {
 
 class AddTaskEvent extends TasksEvent {
   final Task task;
+  final String localTitle;
 
-  const AddTaskEvent(this.task);
+  const AddTaskEvent(this.task, this.localTitle);
 
   @override
   List<Object?> get props => [task];
@@ -32,8 +33,10 @@ class AddTaskEvent extends TasksEvent {
 
 class UpdateTaskEvent extends TasksEvent {
   final Task task;
+  final int id;
+  final String localTitle;
 
-  const UpdateTaskEvent(this.task);
+  const UpdateTaskEvent(this.task, this.id, this.localTitle);
 
   @override
   List<Object?> get props => [task];
@@ -41,8 +44,9 @@ class UpdateTaskEvent extends TasksEvent {
 
 class DeleteTaskEvent extends TasksEvent {
   final int taskId;
+  final int localId;
 
-  const DeleteTaskEvent(this.taskId);
+  const DeleteTaskEvent(this.taskId, this.localId);
 
   @override
   List<Object?> get props => [taskId];

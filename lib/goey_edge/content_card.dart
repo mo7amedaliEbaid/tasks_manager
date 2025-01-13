@@ -3,7 +3,7 @@ import 'dart:math';
 
 import 'package:flutter/scheduler.dart';
 
-import 'main.dart';
+import 'gooey_main.dart';
 
 class ContentCard extends StatefulWidget {
   final String color;

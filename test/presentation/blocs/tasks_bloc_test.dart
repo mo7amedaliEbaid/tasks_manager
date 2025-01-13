@@ -48,7 +48,7 @@ void main() {
       act: (bloc) => bloc.add(const LoadTasks(10, 0)),
       expect: () => [
         TasksLoading(),
-        TasksLoaded([tTask]),
+        TasksLoaded([tTask],[]),
       ],
       verify: (_) => verify(mockRepository.getTasks(limit: 10, skip: 0)),
     );
@@ -70,9 +70,9 @@ void main() {
         when(mockRepository.addTask(tTask)).thenAnswer((_) async => tTask);
         return bloc;
       },
-      seed: () => TasksLoaded([]),
-      act: (bloc) => bloc.add( AddTaskEvent(tTask)),
-      expect: () => [TasksLoaded([tTask])],
+      seed: () => TasksLoaded([],[]),
+      act: (bloc) => bloc.add( AddTaskEvent(tTask,"Local Title")),
+      expect: () => [TasksLoaded([tTask],[])],
     );
 
     // Add tests for UpdateTaskEvent and DeleteTaskEvent similarly...

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
+import 'package:tasks_manager/presentation/screens/tasks.dart';
 
 import '../blocs/auth/auth_bloc.dart';
 import '../blocs/auth/auth_events.dart';
@@ -22,7 +22,8 @@ class LoginScreen extends StatelessWidget {
             );
           } else if (state is Authenticated) {
             SnackBar(content: Text("success"));
-           // Navigator.pushReplacementNamed(context, '/home');
+            Navigator.of(context)
+                .push(MaterialPageRoute(builder: (context) => TaskScreen()));
           }
         },
         builder: (context, state) {
@@ -47,11 +48,11 @@ class LoginScreen extends StatelessWidget {
                 ElevatedButton(
                   onPressed: () {
                     context.read<AuthBloc>().add(
-                      LoginEvent(
-                        username: usernameController.text,
-                        password: passwordController.text,
-                      ),
-                    );
+                          LoginEvent(
+                            username: usernameController.text,
+                            password: passwordController.text,
+                          ),
+                        );
                   },
                   child: Text('Login'),
                 ),

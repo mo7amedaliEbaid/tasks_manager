@@ -39,6 +39,8 @@ dependencies:
   equatable:
   get_it:
   flutter_secure_storage: ^9.2.2
+  sqflite:
+  path:
 
 dev_dependencies:
   flutter_test:

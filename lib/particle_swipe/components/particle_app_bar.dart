@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../main.dart';
+import '../swipe_main.dart';
 
 class ParticleAppBar extends StatelessWidget {
   @override

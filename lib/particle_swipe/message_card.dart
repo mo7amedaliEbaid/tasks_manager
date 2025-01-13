@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'demo_data.dart';
-import 'main.dart';
+import 'swipe_main.dart';
 import 'swipe_item.dart';
 
 // Content for the list items.

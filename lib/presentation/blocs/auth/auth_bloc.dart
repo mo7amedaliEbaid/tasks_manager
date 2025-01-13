@@ -1,6 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:equatable/equatable.dart';
 
+
+import '../../../data/data_sources/local/data_base_helper.dart';
 import '../../../domain/use_cases/get_current_user.dart';
 import '../../../domain/use_cases/log_out.dart';
 import '../../../domain/use_cases/login.dart';
@@ -26,10 +27,13 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     on<RefreshSessionEvent>(_onRefreshSession);
   }
 
+  final DatabaseHelper db = DatabaseHelper();
+
   Future<void> _onLogin(LoginEvent event, Emitter<AuthState> emit) async {
     emit(AuthLoading());
     try {
       final user = await loginUseCase(event.username, event.password);
+      await db.addUser(event.username, event.password);
       emit(Authenticated(user: user));
     } catch (e) {
       emit(AuthError(message: e.toString()));
@@ -51,6 +55,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     emit(AuthLoading());
     try {
       final user = await getCurrentUserUseCase();
+      await db.getUser(1);
       emit(Authenticated(user: user));
     } catch (e) {
       emit(AuthError(message: e.toString()));
@@ -68,11 +73,12 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         emit(Authenticated(user: currentUser));
       } else {
         // If not authenticated, emit an error
-        emit(AuthError(message: 'Session refreshed but user state is invalid.'));
+        emit(
+            AuthError(message: 'Session refreshed but user state is invalid.'));
       }
     } catch (e) {
-      emit(AuthError(message: e.toString())); // Emit error state if refresh fails
+      emit(AuthError(
+          message: e.toString())); // Emit error state if refresh fails
     }
   }
-
 }

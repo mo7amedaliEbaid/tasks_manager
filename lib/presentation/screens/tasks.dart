@@ -38,12 +38,12 @@ class TaskScreen extends StatelessWidget {
                             value: task.completed,
                             onChanged: (bool? value) {
                               // Handle task completion
-                              context.read<TasksBloc>().add(UpdateTaskEvent(task.copyWith(completed: value!)));
+                            //  context.read<TasksBloc>().add(UpdateTaskEvent(task.copyWith(completed: value!)));
                             },
                           ),
                           onLongPress: () {
                             // Delete task on long press
-                            context.read<TasksBloc>().add(DeleteTaskEvent(task.id));
+                           // context.read<TasksBloc>().add(DeleteTaskEvent(task.id));
                           },
                         );
                       },
@@ -65,7 +65,7 @@ class TaskScreen extends StatelessWidget {
                     description: 'Description for new task',
                     completed: false,
                   );
-                  context.read<TasksBloc>().add(AddTaskEvent(newTask));
+               //   context.read<TasksBloc>().add(AddTaskEvent(newTask));
                 },
                 child: const Text('Add New Task'),
               ),

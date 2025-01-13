@@ -16,8 +16,9 @@ class TasksLoading extends TasksState {}
 
 class TasksLoaded extends TasksState {
   final List<Task> tasks;
+  final List<Map<String, dynamic>> localTasks;
 
-  const TasksLoaded(this.tasks);
+  const TasksLoaded(this.tasks, this.localTasks);
 
   @override
   List<Object?> get props => [tasks];

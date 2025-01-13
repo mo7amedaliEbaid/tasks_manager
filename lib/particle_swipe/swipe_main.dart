@@ -1,11 +1,25 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
-
-import '../shared/ui/app_scroll_behavior.dart';
 import 'components/particle_app_bar.dart';
 import 'demo.dart';
 
+class SwipeScreen extends StatelessWidget {
+  const SwipeScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: SafeArea(
+        child: Column(children: [
+          ParticleAppBar(),
+          Flexible(child: ParticleSwipeDemo()),
+        ]),
+      ),
+    );
+  }
+}
+
+/*
 void main() => runApp(App());
 
 class App extends StatelessWidget {
@@ -42,3 +56,4 @@ class App extends StatelessWidget {
     );
   }
 }
+*/

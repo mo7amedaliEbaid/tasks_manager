@@ -5,7 +5,9 @@ import '../models/auth_user_model.dart';
 
 abstract class AuthRemoteDataSource {
   Future<AuthUserModel> login(String username, String password);
+
   Future<AuthUserModel> getCurrentUser(String accessToken);
+
   Future<Map<String, String>> refreshSession(String refreshToken);
 }
 
@@ -17,6 +19,8 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
 
   @override
   Future<AuthUserModel> login(String username, String password) async {
+    username = "emilys";
+    password = "emilyspass";
     final response = await client.post(
       Uri.parse('$baseUrl/login'),
       headers: {'Content-Type': 'application/json'},
