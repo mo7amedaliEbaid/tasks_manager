@@ -2,7 +2,7 @@
 
 import 'package:equatable/equatable.dart';
 
-import '../../../domain/entities/task.dart';
+import '../../../domain/entities/task_entity.dart';
 
 abstract class TasksEvent extends Equatable {
   const TasksEvent();

@@ -4,11 +4,11 @@ import 'dart:convert';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
 import 'package:mockito/mockito.dart';
-import 'package:tasks_manager/data/data_sources/task.dart';
-import 'package:tasks_manager/data/models/task.dart';
+import 'package:tasks_manager/data/data_sources/task_remote_data_source.dart';
+import 'package:tasks_manager/data/models/task_model.dart';
 
 
-import 'mock_http_client.mocks.dart';
+import '../mocks/mocks.mocks.dart';
 
 void main() {
   late TaskRemoteDataSourceImpl dataSource;
@@ -21,8 +21,8 @@ void main() {
 
   final taskJson = {
     "id": 1,
-    "title": 154,
-    "description": "Description",
+    "userId": 154,
+    "todo": "Description",
     "completed": false,
   };
 

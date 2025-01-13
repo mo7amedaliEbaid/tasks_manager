@@ -1,6 +1,6 @@
 // lib/domain/usecases/add_task.dart
-import '../entities/task.dart';
-import '../repositories/task.dart';
+import '../entities/task_entity.dart';
+import '../repositories/tasks_repository.dart';
 
 class AddTask {
   final TaskRepository repository;

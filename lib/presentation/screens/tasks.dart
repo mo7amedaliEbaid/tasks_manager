@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../di/di.dart';
-import '../../domain/entities/task.dart';
+import '../../domain/entities/task_entity.dart';
 import '../blocs/tasks/bloc.dart';
 import '../blocs/tasks/events.dart';
 import '../blocs/tasks/states.dart';

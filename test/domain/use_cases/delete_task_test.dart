@@ -2,7 +2,8 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 import 'package:tasks_manager/domain/use_cases/delete_task.dart';
 
-import '../respositories/mock_task_repository.mocks.dart';
+import '../../mocks/mocks.mocks.dart';
+
 
 
 void main() {
