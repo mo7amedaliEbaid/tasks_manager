@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:tasks_manager/presentation/blocs/auth/auth_bloc.dart';
+import 'package:tasks_manager/presentation/blocs/tasks/bloc.dart';
 import 'package:tasks_manager/presentation/screens/login.dart';
 import 'package:tasks_manager/shared/observer/app_observer.dart';
 import 'package:tasks_manager/shared/ui/app_scroll_behavior.dart';
@@ -44,11 +45,20 @@ class MyApp extends StatelessWidget {
     final theme = ThemeData(
       brightness: Brightness.dark,
       canvasColor: Color(0xFF161719),
-      textTheme: Theme.of(context).textTheme.apply(bodyColor: Colors.white, fontFamily: 'OpenSans'),
+      textTheme: Theme.of(context)
+          .textTheme
+          .apply(bodyColor: Colors.white, fontFamily: 'OpenSans'),
       iconTheme: Theme.of(context).iconTheme.copyWith(color: Colors.white),
     );
-    return BlocProvider(
-      create: (context) => getIt<AuthBloc>(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => getIt<AuthBloc>(),
+        ),
+        BlocProvider(
+          create: (context) => getIt<TasksBloc>(),
+        ),
+      ],
       child: MaterialApp(
         title: 'Task Manager',
         scrollBehavior: AppScrollBehavior(),

@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../presentation/blocs/tasks/bloc.dart';
+import '../presentation/blocs/tasks/events.dart';
+import '../presentation/blocs/tasks/states.dart';
 import 'components/sprite_sheet.dart';
 import 'demo_data.dart';
 import 'list_model.dart';
@@ -46,6 +50,7 @@ class ParticleSwipeDemoState extends State<ParticleSwipeDemo> with SingleTickerP
           RemovedSwipeItem(animation: animation),
     );
     _ticker.start();
+    context.read<TasksBloc>().add(LoadTasks(10, 0));
     super.initState();
   }
 
@@ -68,18 +73,44 @@ class ParticleSwipeDemoState extends State<ParticleSwipeDemo> with SingleTickerP
   }
 
   Widget _buildList() {
-    return AnimatedList(
-      key: _listKey, // used by the ListModel to find this AnimatedList
-      initialItemCount: _model.length,
-      physics: ClampingScrollPhysics(),
-      itemBuilder: (BuildContext context, int index, _) {
-        var item = _model[index];
-        return SwipeItem(
-            data: item,
-            isEven: index.isEven,
-            onSwipe: (key, {required action}) => _performSwipeAction(item, key, action));
-      },
-    );
+
+    return
+
+      BlocBuilder<TasksBloc, TasksState>(builder: (context, state) {
+        if (state is TasksLoaded && state.localTasks.isNotEmpty) {
+          return AnimatedList(
+            key: _listKey, // used by the ListModel to find this AnimatedList
+            initialItemCount: _model.length,
+            physics: ClampingScrollPhysics(),
+            itemBuilder: (BuildContext context, int index, _) {
+              var item = _model[index];
+              return SwipeItem(
+                  data: item,
+                  isEven: index.isEven,
+                  onSwipe: (key, {required action}) => _performSwipeAction(item, key, action));
+            },
+          );
+        }
+        if (state is TasksLoading) {
+          return Center(
+            child: CircularProgressIndicator(),
+          );
+        }
+        if (state is TasksError) {
+          return Center(
+            child: Text('Error loading tasks'),
+          );
+        }
+        if (state is TasksLoaded && state.localTasks.isEmpty) {
+          return Center(
+            child: Text('No tasks available'),
+          );
+        }
+        return SizedBox.shrink();
+      });
+
+
+
   }
 
   void _performSwipeAction(Email data, GlobalKey key, SwipeAction action) {

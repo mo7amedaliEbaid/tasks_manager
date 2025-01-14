@@ -34,7 +34,8 @@ class SwipeItem extends StatefulWidget {
 
   final Email data;
   final bool isEven;
-  final void Function(GlobalKey key, {required SwipeAction action})? onSwipe; // called when a row is swiped left.
+  final void Function(GlobalKey key, {required SwipeAction action})?
+      onSwipe; // called when a row is swiped left.
 
   SwipeItem({required this.data, this.onSwipe, required this.isEven});
 
@@ -59,7 +60,8 @@ class SwipeItemState extends State<SwipeItem> {
   @override
   Widget build(BuildContext context) {
     // Determine the swipe state. How far, what direction, etc.
-    final double swipeRatio = math.min(1.0, _swipeDistance.abs() / SwipeItem.swipeDistance);
+    final double swipeRatio =
+        math.min(1.0, _swipeDistance.abs() / SwipeItem.swipeDistance);
     final bool lToR = _swipeDistance < 0.0;
     final double swipeSign = _swipeDistance.sign;
     final double swipeDistance = _swipeDistance.abs();
@@ -67,7 +69,7 @@ class SwipeItemState extends State<SwipeItem> {
     final Color indicatorColor = lToR ? Color(0xff4ac0cb) : Color(0xffcb4a65);
 
     // Draw the item based on the swipe state:
-    return SizedBox.shrink()/*Container(
+    return Container(
       key: _key,
       alignment: Alignment.center,
       height: SwipeItem.nominalHeight,
@@ -94,10 +96,14 @@ class SwipeItemState extends State<SwipeItem> {
                   decoration: BoxDecoration(
                       boxShadow: [
                         if (widget.data.isFavorite && lToR)
-                          BoxShadow(color: Colors.white70.withOpacity(swipeRatio), blurRadius: 18)
+                          BoxShadow(
+                              color: Colors.white70.withOpacity(swipeRatio),
+                              blurRadius: 18)
                       ],
                       borderRadius: BorderRadius.circular(50),
-                      color: widget.data.isFavorite || !lToR ? Colors.white : Colors.transparent),
+                      color: widget.data.isFavorite || !lToR
+                          ? Colors.white
+                          : Colors.transparent),
                 ),
                 Icon(
                   lToR ? Icons.stars : Icons.cancel,
@@ -122,11 +128,12 @@ class SwipeItemState extends State<SwipeItem> {
                   scale: 1.0 - swipeRatio * 0.1,
                   child: EmailCard(
                     email: widget.data,
-                    backgroundColor: widget.isEven ? Color(0xff272845) : Color(0xff323052),
+                    backgroundColor:
+                        widget.isEven ? Color(0xff272845) : Color(0xff323052),
                   )),
             )),
       ]),
-    )*/;
+    );
   }
 
   void _resetScrollController() => _hzScrollController.jumpTo(0);
@@ -142,7 +149,9 @@ class SwipeItemState extends State<SwipeItem> {
       // Right swipe.
       widget.onSwipe?.call(_key, action: SwipeAction.favorite);
       _hzScrollController
-          .animateTo(0, duration: Duration(milliseconds: 800), curve: Interval(.25, 1, curve: Curves.easeOutQuad))
+          .animateTo(0,
+              duration: Duration(milliseconds: 800),
+              curve: Interval(.25, 1, curve: Curves.easeOutQuad))
           .whenComplete(() => _isPerformingAction = false);
     }
     // Redraw the item with the new swipe distance:
