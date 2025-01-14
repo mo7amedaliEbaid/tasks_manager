@@ -9,7 +9,7 @@ import 'gooey_edge_clipper.dart';
 class GooeyCarousel extends StatefulWidget {
   final List<Widget> children;
 
-  GooeyCarousel({required this.children}) : super();
+  const GooeyCarousel({super.key, required this.children});
 
   @override
   GooeyCarouselState createState() => GooeyCarouselState();

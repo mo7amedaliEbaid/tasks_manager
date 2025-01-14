@@ -12,7 +12,7 @@ import 'swipe_item.dart';
 class ParticleSwipeDemo extends StatefulWidget {
   final List data;
 
-  ParticleSwipeDemo() : data = DemoData().getData();
+  ParticleSwipeDemo({super.key}) : data = DemoData().getData();
 
   @override
   State<StatefulWidget> createState() {

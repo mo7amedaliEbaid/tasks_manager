@@ -3,6 +3,7 @@ import 'dart:math';
 
 import 'package:flutter/scheduler.dart';
 
+import '../particle_swipe/swipe_main.dart';
 import 'gooey_main.dart';
 
 class ContentCard extends StatefulWidget {
@@ -11,7 +12,12 @@ class ContentCard extends StatefulWidget {
   final String title;
   final String subtitle;
 
-  ContentCard({required this.color, this.title = "", required this.subtitle, required this.altColor}) : super();
+  ContentCard(
+      {required this.color,
+      this.title = "",
+      required this.subtitle,
+      required this.altColor})
+      : super();
 
   @override
   _ContentCardState createState() => _ContentCardState();
@@ -50,10 +56,14 @@ class _ContentCardState extends State<ContentCard> {
           fit: StackFit.expand,
           children: <Widget>[
             Transform.translate(
-              offset: Offset(-(scaleX - 1) / 2 * width, -(scaleY - 1) / 2 * height + offsetY),
+              offset: Offset(-(scaleX - 1) / 2 * width,
+                  -(scaleY - 1) / 2 * height + offsetY),
               child: Transform(
                 transform: Matrix4.diagonal3Values(scaleX, scaleY, 1),
-                child: Image.asset('images/Bg-${widget.color}.png', fit: BoxFit.cover, ),
+                child: Image.asset(
+                  'images/Bg-${widget.color}.png',
+                  fit: BoxFit.cover,
+                ),
               ),
             ),
             Container(
@@ -70,13 +80,16 @@ class _ContentCardState extends State<ContentCard> {
                         child: Image.asset(
                           'images/Illustration-${widget.color}.png',
                           fit: BoxFit.contain,
-
                         ),
                       ),
                     ),
 
                     //Slider circles
-                    Container(height: 14, child: Image.asset('images/Slider-${widget.color}.png', )),
+                    Container(
+                        height: 14,
+                        child: Image.asset(
+                          'images/Slider-${widget.color}.png',
+                        )),
 
                     //Bottom content
                     Expanded(
@@ -104,33 +117,44 @@ class _ContentCardState extends State<ContentCard> {
         Text(widget.title,
             textAlign: TextAlign.center,
             style: TextStyle(
-                height: 1.2, fontSize: 30.0, fontFamily: 'DMSerifDisplay', color: Colors.white,)),
+              height: 1.2,
+              fontSize: 30.0,
+              fontFamily: 'DMSerifDisplay',
+              color: Colors.white,
+            )),
         Text(widget.subtitle,
             textAlign: TextAlign.center,
             style: TextStyle(
-                fontSize: 14.0,
-                fontWeight: FontWeight.w300,
-                fontFamily: 'OpenSans',
-                color: Colors.white,
-               )),
+              fontSize: 14.0,
+              fontWeight: FontWeight.w300,
+              fontFamily: 'OpenSans',
+              color: Colors.white,
+            )),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 36.0),
           child: MaterialButton(
             elevation: 0,
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)),
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)),
             color: widget.altColor,
             child: Padding(
               padding: const EdgeInsets.symmetric(vertical: 16.0),
               child: Text('Get Started',
                   style: TextStyle(
-                      fontSize: 16,
-                      letterSpacing: .8,
-                      fontFamily: 'OpenSans',
-                      fontWeight: FontWeight.w600,
-                      color: Colors.white,
-                      )),
+                    fontSize: 16,
+                    letterSpacing: .8,
+                    fontFamily: 'OpenSans',
+                    fontWeight: FontWeight.w600,
+                    color: Colors.white,
+                  )),
             ),
-            onPressed: () {},
+            onPressed: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) => SwipeScreen(),
+                ),
+              );
+            },
           ),
         )
       ],

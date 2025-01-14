@@ -67,7 +67,7 @@ class SwipeItemState extends State<SwipeItem> {
     final Color indicatorColor = lToR ? Color(0xff4ac0cb) : Color(0xffcb4a65);
 
     // Draw the item based on the swipe state:
-    return Container(
+    return SizedBox.shrink()/*Container(
       key: _key,
       alignment: Alignment.center,
       height: SwipeItem.nominalHeight,
@@ -126,7 +126,7 @@ class SwipeItemState extends State<SwipeItem> {
                   )),
             )),
       ]),
-    );
+    )*/;
   }
 
   void _resetScrollController() => _hzScrollController.jumpTo(0);

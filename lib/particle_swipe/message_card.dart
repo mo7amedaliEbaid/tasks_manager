@@ -9,7 +9,11 @@ class EmailCard extends StatelessWidget {
   final Email email;
   final Color backgroundColor;
 
-  EmailCard({required this.email, required this.backgroundColor});
+  const EmailCard({
+    super.key,
+    required this.email,
+    required this.backgroundColor,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -34,31 +38,39 @@ class EmailCard extends StatelessWidget {
           children: <Widget>[
             Row(
               children: <Widget>[
-                if (email.isRead)
+                /*    if (email.isRead)
                   Padding(
                     padding: const EdgeInsets.only(right: 8.0),
                     child: Icon(Icons.lens, size: 12.0, color: Color(0xffaa07de)),
-                  ),
+                  ),*/
                 Expanded(
                   child: Text(email.from,
-                      style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14, letterSpacing: .3, )),
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 14,
+                        letterSpacing: .3,
+                      )),
                 ),
-                Text('11:45 PM', style: TextStyle(fontSize: 11, letterSpacing: .3, )),
+                //    Text('11:45 PM', style: TextStyle(fontSize: 11, letterSpacing: .3, )),
               ],
             ),
-            Row(
+            /*   Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
                 Text(email.subject, style: TextStyle(fontSize: 11, letterSpacing: .3,)),
                 if (email.isFavorite) Icon(Icons.star, size: 18.0, color: Color(0xff55c8d4)),
               ],
-            ),
+            ),*/
             SizedBox(height: 2.0),
             Text(
               email.body,
               maxLines: 2,
               overflow: TextOverflow.ellipsis,
-              style: TextStyle(fontSize: 11, letterSpacing: .3, color: Color(0xff9293bf),),
+              style: TextStyle(
+                fontSize: 11,
+                letterSpacing: .3,
+                color: Color(0xff9293bf),
+              ),
             ),
             SizedBox(
               width: 16.0,

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tasks_manager/presentation/screens/tasks.dart';
 
+import '../../goey_edge/demo.dart';
 import '../blocs/auth/auth_bloc.dart';
 import '../blocs/auth/auth_events.dart';
 import '../blocs/auth/auth_states.dart';
@@ -23,7 +24,7 @@ class LoginScreen extends StatelessWidget {
           } else if (state is Authenticated) {
             SnackBar(content: Text("success"));
             Navigator.of(context)
-                .push(MaterialPageRoute(builder: (context) => TaskScreen()));
+                .push(MaterialPageRoute(builder: (context) => GooeyEdgeDemo(title: 'Tasks Manager',)));
           }
         },
         builder: (context, state) {
