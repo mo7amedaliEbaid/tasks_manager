@@ -20,6 +20,7 @@ https://github.com/user-attachments/assets/1af72a67-b1eb-4270-9b4d-8145b495974f
 - Api Integration
 - Clean architecture
 - Bloc Pattern
+- Dependency Injection
 - Advanced Animations and Swipe Detectors
 - Unit Tests
 - Bloc Tests
@@ -27,6 +28,13 @@ https://github.com/user-attachments/assets/1af72a67-b1eb-4270-9b4d-8145b495974f
 - Authentication
 - Local DB ( Sqflite )
 - Secure Storage ( flutter_secure_storage )
+- Animated Native Splash Screen witten specific for android ( written with Kotlin and Xml ).
+
+
+
+https://github.com/user-attachments/assets/7059d7fe-86ee-4d1f-beee-c46edcb03d5d
+
+
 
 
 ##  How to use
