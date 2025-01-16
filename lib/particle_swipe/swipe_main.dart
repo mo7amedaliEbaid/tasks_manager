@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tasks_manager/domain/entities/task_entity.dart';
 import 'package:tasks_manager/presentation/blocs/tasks/bloc.dart';
 import 'package:tasks_manager/presentation/blocs/tasks/events.dart';
+import 'package:tasks_manager/presentation/blocs/tasks/states.dart';
 
 import 'components/particle_app_bar.dart';
 import 'demo.dart';
@@ -35,7 +36,9 @@ class SwipeScreen extends StatelessWidget {
           onPressed: () {
             showDialog(
               context: context,
-              builder: (context) => GradientPopupDialog(),
+              builder: (context) => GradientPopupDialog(
+                isFromUpdate: false,
+              ),
             );
           },
           child: Icon(Icons.add), // Replace with desired icon
@@ -46,7 +49,47 @@ class SwipeScreen extends StatelessWidget {
   }
 }
 
-class GradientPopupDialog extends StatelessWidget {
+class GradientPopupDialog extends StatefulWidget {
+  const GradientPopupDialog(
+      {super.key,
+      required this.isFromUpdate,
+      this.title,
+      this.content,
+      this.id});
+
+  final bool isFromUpdate;
+  final String? title;
+  final String? content;
+  final int? id;
+
+  @override
+  State<GradientPopupDialog> createState() => _GradientPopupDialogState();
+}
+
+class _GradientPopupDialogState extends State<GradientPopupDialog> {
+  final TextEditingController titleTextEditingController =
+      TextEditingController();
+  final TextEditingController contentTextEditingController =
+      TextEditingController();
+  final _formKey = GlobalKey<FormState>();
+
+  @override
+  void initState() {
+    if (widget.isFromUpdate) {
+      titleTextEditingController.text = widget.title!;
+      contentTextEditingController.text = widget.content!;
+    }
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    // Dispose controllers to free resources
+    titleTextEditingController.dispose();
+    contentTextEditingController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Dialog(
@@ -62,63 +105,136 @@ class GradientPopupDialog extends StatelessWidget {
           ),
         ),
         padding: EdgeInsets.all(16),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Text(
-              'Add Details',
-              style: TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-                color: Colors.white,
-              ),
-            ),
-            SizedBox(height: 16),
-            TextField(
-              decoration: InputDecoration(
-                hintText: 'Enter Title',
-                filled: true,
-                fillColor: Colors.white,
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10),
+        child: Form(
+          key: _formKey,
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(
+                'Add Details',
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black,
+                  fontFamily: 'OpenSans',
                 ),
               ),
-            ),
-            SizedBox(height: 16),
-            TextField(
-              decoration: InputDecoration(
-                hintText: 'Enter Description',
-                filled: true,
-                fillColor: Colors.white,
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10),
+              SizedBox(height: 16),
+              TextFormField(
+                controller: titleTextEditingController,
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black,
+                  fontFamily: 'OpenSans',
                 ),
+                decoration: InputDecoration(
+                  hintText: 'Enter Title',
+                  filled: true,
+                  fillColor: Colors.white,
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                ),
+                validator: (value) {
+                  if (value == null || value.trim().isEmpty) {
+                    return 'Title is required';
+                  }
+                  return null;
+                },
               ),
-              maxLines: 3,
-            ),
-            SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: () {
-                context.read<TasksBloc>().add(AddTaskEvent(
-                    Task(
-                        id: 2,
-                        title: 152,
-                        description: 'Test Desc',
-                        completed: false),
-                    "Title"));
-              },
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.white,
-                foregroundColor: Color(0xffaa07de),
+              SizedBox(height: 16),
+              TextFormField(
+                controller: contentTextEditingController,
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black,
+                  fontFamily: 'OpenSans',
+                ),
+                decoration: InputDecoration(
+                  hintText: 'Enter Description',
+                  filled: true,
+                  fillColor: Colors.white,
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                ),
+                maxLines: 3,
+                validator: (value) {
+                  if (value == null || value.trim().isEmpty) {
+                    return 'Description is required';
+                  }
+                  return null;
+                },
               ),
-              child: Text('Submit'),
-            ),
-          ],
+              SizedBox(height: 20),
+              BlocConsumer<TasksBloc, TasksState>(
+                listener: (context, state) {
+                  if (state is TasksLoaded) {
+                    Navigator.of(context).pop();
+                  }
+                },
+                builder: (context, state) {
+                  if (state is TasksLoading) {
+                    return CircularProgressIndicator();
+                  }
+                  return ElevatedButton(
+                    onPressed: () {
+                      if (_formKey.currentState!.validate()) {
+                        // Perform your task submission logic
+                        if (widget.isFromUpdate) {
+                          context.read<TasksBloc>().add(
+                                UpdateTaskEvent(
+                                  Task(
+                                    id: 1,
+                                    title: 152,
+                                    description:
+                                        contentTextEditingController.text,
+                                    completed: false,
+                                  ),
+                                  widget.id!,
+                                  titleTextEditingController.text,
+                                ),
+                              );
+                          context
+                              .read<TasksBloc>()
+                              .getTasks(limit: 10, skip: 0);
+                        } else {
+                          context.read<TasksBloc>().add(
+                                AddTaskEvent(
+                                  Task(
+                                    id: 2,
+                                    title: 152,
+                                    description:
+                                        contentTextEditingController.text,
+                                    completed: false,
+                                  ),
+                                  titleTextEditingController.text,
+                                ),
+                              );
+                          context
+                              .read<TasksBloc>()
+                              .getTasks(limit: 10, skip: 0);
+                        }
+                      }
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.white,
+                      foregroundColor: Color(0xffaa07de),
+                    ),
+                    child: Text('Submit'),
+                  );
+                },
+              ),
+            ],
+          ),
         ),
       ),
     );
   }
 }
+
 /*
 void main() => runApp(App());
 

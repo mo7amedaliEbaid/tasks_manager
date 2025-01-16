@@ -6,7 +6,7 @@ import 'swipe_item.dart';
 
 // Content for the list items.
 class EmailCard extends StatelessWidget {
-  final Email email;
+  final Task email;
   final Color backgroundColor;
 
   const EmailCard({

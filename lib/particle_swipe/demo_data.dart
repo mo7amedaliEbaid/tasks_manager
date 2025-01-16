@@ -1,6 +1,6 @@
 import 'dart:math';
 
-class Email {
+class Task {
   final String from;
   final String subject;
   final String body;
@@ -9,7 +9,7 @@ class Email {
 
   int randNum = Random().nextInt(999);
 
-  Email({required this.from, required this.subject, required this.body, this.isRead = false, this.isFavorite = false});
+  Task({required this.from, required this.subject, required this.body, this.isRead = false, this.isFavorite = false});
 
   toggleFavorite() {
     this.isFavorite = !this.isFavorite;
@@ -17,139 +17,139 @@ class Email {
 }
 
 class DemoData {
-  final List<Email> _inbox = [
-    Email(
+  final List<Task> _inbox = [
+    Task(
       from: 'Jeffrey Evans',
       subject: 'Re: Workshop Preperation',
       body:
           'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum at viverra sem. Suspendisse gravida magna in lorem vehicula…',
     ),
-    Email(
+    Task(
       from: 'Jordan Chow',
       isRead: true,
       subject: 'Reservation Confirmed for Brooklyn',
       body:
           'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum at viverra sem. Suspendisse gravida magna in lorem vehicula…',
     ),
-    Email(
+    Task(
       from: 'Katherine Woodward',
       subject: 'Rough outline',
       body:
           'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum at viverra sem. Suspendisse gravida magna in lorem vehicula…',
     ),
-    Email(
+    Task(
       from: 'Maddie Toohey',
       isRead: true,
       subject: 'Daily Recap for Tuesday, October 30',
       body:
           'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum at viverra sem. Suspendisse gravida magna in lorem vehicula…',
     ),
-    Email(
+    Task(
       from: 'Tamia Clouthier',
       isRead: true,
       subject: 'Workshop Information',
       body:
           'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum at viverra sem. Suspendisse gravida magna in lorem vehicula…',
     ),
-    Email(
+    Task(
       from: 'Daniel Song',
       subject: 'Possible Urgent Absence',
       body:
           'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum at viverra sem. Suspendisse gravida magna in lorem vehicula…',
     ),
-    Email(
+    Task(
       from: 'Andrew Argue',
       subject: 'Vacation Request',
       isRead: true,
       body:
           'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum at viverra sem. Suspendisse gravida magna in lorem vehicula…',
     ),
-    Email(
+    Task(
       from: 'Jeffrey Evans',
       subject: 'Re: Workshop Preperation',
       body:
           'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum at viverra sem. Suspendisse gravida magna in lorem vehicula…',
     ),
-    Email(
+    Task(
       from: 'Jordan Chow',
       isRead: true,
       subject: 'Reservation Confirmed for Brooklyn',
       body:
           'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum at viverra sem. Suspendisse gravida magna in lorem vehicula…',
     ),
-    Email(
+    Task(
       from: 'Katherine Woodward',
       subject: 'Rough outline',
       body:
           'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum at viverra sem. Suspendisse gravida magna in lorem vehicula…',
     ),
-    Email(
+    Task(
       from: 'Maddie Toohey',
       isRead: true,
       subject: 'Daily Recap for Tuesday, October 30',
       body:
           'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum at viverra sem. Suspendisse gravida magna in lorem vehicula…',
     ),
-    Email(
+    Task(
       from: 'Tamia Clouthier',
       isRead: true,
       subject: 'Workshop Information',
       body:
           'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum at viverra sem. Suspendisse gravida magna in lorem vehicula…',
     ),
-    Email(
+    Task(
       from: 'Daniel Song',
       subject: 'Possible Urgent Absence',
       body:
           'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum at viverra sem. Suspendisse gravida magna in lorem vehicula…',
     ),
-    Email(
+    Task(
       from: 'Andrew Argue',
       subject: 'Vacation Request',
       isRead: true,
       body:
           'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum at viverra sem. Suspendisse gravida magna in lorem vehicula…',
     ),
-    Email(
+    Task(
       from: 'Jeffrey Evans',
       subject: 'Re: Workshop Preperation',
       body:
           'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum at viverra sem. Suspendisse gravida magna in lorem vehicula…',
     ),
-    Email(
+    Task(
       from: 'Jordan Chow',
       isRead: true,
       subject: 'Reservation Confirmed for Brooklyn',
       body:
           'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum at viverra sem. Suspendisse gravida magna in lorem vehicula…',
     ),
-    Email(
+    Task(
       from: 'Katherine Woodward',
       subject: 'Rough outline',
       body:
           'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum at viverra sem. Suspendisse gravida magna in lorem vehicula…',
     ),
-    Email(
+    Task(
       from: 'Maddie Toohey',
       isRead: true,
       subject: 'Daily Recap for Tuesday, October 30',
       body:
           'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum at viverra sem. Suspendisse gravida magna in lorem vehicula…',
     ),
-    Email(
+    Task(
       from: 'Tamia Clouthier',
       isRead: true,
       subject: 'Workshop Information',
       body:
           'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum at viverra sem. Suspendisse gravida magna in lorem vehicula…',
     ),
-    Email(
+    Task(
       from: 'Daniel Song',
       subject: 'Possible Urgent Absence',
       body:
           'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum at viverra sem. Suspendisse gravida magna in lorem vehicula…',
     ),
-    Email(
+    Task(
       from: 'Andrew Argue',
       subject: 'Vacation Request',
       isRead: true,
@@ -158,11 +158,11 @@ class DemoData {
     ),
   ];
 
-  int getIndexOf(Email email) {
-    return _inbox.indexWhere((Email inbox) => inbox.subject == email.subject);
+  int getIndexOf(Task email) {
+    return _inbox.indexWhere((Task inbox) => inbox.subject == email.subject);
   }
 
-  List<Email> getData() {
+  List<Task> getData() {
     return _inbox;
   }
 }

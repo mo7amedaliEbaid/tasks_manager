@@ -21,22 +21,23 @@ class _GooeyEdgeDemoState extends State<GooeyEdgeDemo> {
           ContentCard(
             color: 'Red',
             altColor: Color(0xFF4259B2),
-            title: "Wake up gently \nwith sounds of nature",
-            subtitle: 'Relax your mind and create inner peace with soothing sounds of nature.',
+            title: "Organize Your Day \nwith Smart Planning",
+            subtitle: 'Prioritize your tasks and streamline your workflow for maximum productivity.',
           ),
           ContentCard(
             color: 'Yellow',
             altColor: Color(0xFF904E93),
-            title: "Clear your mind \nwith breathing exercises",
-            subtitle: 'Melt your stresses and anxieties away with 50+ breathing exercises.',
+            title: "Track Progress \nwith Real-Time Updates",
+            subtitle: 'Stay on top of your goals with visual progress tracking and reminders.',
           ),
           ContentCard(
             color: 'Blue',
             altColor: Color(0xFFFFB138),
-            title: "Fall asleep \nwith bedtime stories",
-            subtitle: 'Enjoy a restful night’s sleep with relaxing activities and calm bedtime stories.',
+            title: "Collaborate Seamlessly \nwith Your Team",
+            subtitle: 'Boost teamwork with shared task lists, updates, and real-time collaboration.',
           ),
         ],
+
       ),
     );
   }

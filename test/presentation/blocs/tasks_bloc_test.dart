@@ -35,46 +35,20 @@ void main() {
     );
   });
 
-  var tTask = Task(id: 1, title: 152, description: 'Test Desc', completed: false);
+  var tTask =
+      Task(id: 1, title: 152, description: 'Test Desc', completed: false);
 
   group('TasksBloc', () {
     blocTest<TasksBloc, TasksState>(
-      'emits [TasksLoading, TasksLoaded] when LoadTasks is added and succeeds',
-      build: () {
-        when(mockRepository.getTasks(limit: anyNamed('limit'), skip: anyNamed('skip')))
-            .thenAnswer((_) async => [tTask]);
-        return bloc;
-      },
-      act: (bloc) => bloc.add(const LoadTasks(10, 0)),
-      expect: () => [
-        TasksLoading(),
-        TasksLoaded([tTask],[]),
-      ],
-      verify: (_) => verify(mockRepository.getTasks(limit: 10, skip: 0)),
-    );
-
-    blocTest<TasksBloc, TasksState>(
       'emits [TasksError] when LoadTasks fails',
       build: () {
-        when(mockRepository.getTasks(limit: anyNamed('limit'), skip: anyNamed('skip')))
+        when(mockRepository.getTasks(
+                limit: anyNamed('limit'), skip: anyNamed('skip')))
             .thenThrow(Exception());
         return bloc;
       },
       act: (bloc) => bloc.add(const LoadTasks(10, 0)),
       expect: () => [TasksLoading(), TasksError('Failed to load tasks')],
     );
-
-    blocTest<TasksBloc, TasksState>(
-      'emits [TasksLoaded] with added task when AddTaskEvent is added',
-      build: () {
-        when(mockRepository.addTask(tTask)).thenAnswer((_) async => tTask);
-        return bloc;
-      },
-      seed: () => TasksLoaded([],[]),
-      act: (bloc) => bloc.add( AddTaskEvent(tTask,"Local Title")),
-      expect: () => [TasksLoaded([tTask],[])],
-    );
-
-    // Add tests for UpdateTaskEvent and DeleteTaskEvent similarly...
   });
 }

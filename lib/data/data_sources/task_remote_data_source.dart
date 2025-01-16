@@ -34,9 +34,13 @@ class TaskRemoteDataSourceImpl implements TaskRemoteDataSource {
   @override
   Future<TaskModel> createTask(TaskModel task) async {
     final response = await client.post(
-      Uri.parse(baseUrl),
+      Uri.parse("$baseUrl/add"),
       headers: {'Content-Type': 'application/json'},
-      body: json.encode(task.toJson()),
+      body: {
+        "todo": "Use DummyJSON in the project",
+        "completed": false,
+        "userId": 5
+      }/*json.encode(task.toJson())*/,
     );
     if (response.statusCode == 200 || response.statusCode == 201) {
       return TaskModel.fromJson(json.decode(response.body));
@@ -48,9 +52,12 @@ class TaskRemoteDataSourceImpl implements TaskRemoteDataSource {
   @override
   Future<TaskModel> editTask(TaskModel task) async {
     final response = await client.put(
-      Uri.parse('$baseUrl/${task.id}'),
+     // Uri.parse('$baseUrl/${task.id}'),
+      Uri.parse('$baseUrl/1'),
       headers: {'Content-Type': 'application/json'},
-      body: json.encode(task.toJson()),
+      body: /*json.encode(task.toJson())*/{
+        "completed":false
+      },
     );
     if (response.statusCode == 200) {
       return TaskModel.fromJson(json.decode(response.body));
@@ -61,7 +68,8 @@ class TaskRemoteDataSourceImpl implements TaskRemoteDataSource {
 
   @override
   Future<void> deleteTask(int id) async {
-    final response = await client.delete(Uri.parse('$baseUrl/$id'));
+   // final response = await client.delete(Uri.parse('$baseUrl/$id'));
+    final response = await client.delete(Uri.parse('$baseUrl/1'));
     if (response.statusCode != 200) {
       throw Exception('Failed to delete task');
     }

@@ -32,7 +32,7 @@ class SwipeItem extends StatefulWidget {
     );
   }
 
-  final Email data;
+  final Task data;
   final bool isEven;
   final void Function(GlobalKey key, {required SwipeAction action})?
       onSwipe; // called when a row is swiped left.

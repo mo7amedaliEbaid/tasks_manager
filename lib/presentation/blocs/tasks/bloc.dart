@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:tasks_manager/presentation/blocs/tasks/states.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -27,6 +29,7 @@ class TasksBloc extends Bloc<TasksEvent, TasksState> {
       try {
         final tasks = await getTasks(limit: event.limit, skip: event.skip);
         final localTasks = await db.getNotes();
+        log("localTasks: $localTasks");
         emit(
           TasksLoaded(
             tasks,
@@ -42,11 +45,17 @@ class TasksBloc extends Bloc<TasksEvent, TasksState> {
       try {
         final currentState = state;
         if (currentState is TasksLoaded) {
-          final newTask = await addTask(event.task);
+          //   final newTask = await addTask(event.task);
 
-          await db.addNote(event.localTitle, event.task.description);
+          final taskId =
+              await db.addNote(event.localTitle, event.task.description);
+          log("note id $taskId");
           final localTasks = await db.getNotes();
-          emit(TasksLoaded([...currentState.tasks, newTask], localTasks));
+          log("localTasks: $localTasks");
+          emit(TasksLoaded(
+              /*[...currentState.tasks, newTask],*/
+              null,
+              localTasks));
         }
       } catch (e) {
         emit(TasksError('Failed to add task'));
@@ -57,14 +66,14 @@ class TasksBloc extends Bloc<TasksEvent, TasksState> {
       try {
         final currentState = state;
         if (currentState is TasksLoaded) {
-          final updatedTask = await updateTask(event.task);
-          final updatedTasks = currentState.tasks
+         // final updatedTask = await updateTask(event.task);
+          /*final updatedTasks = currentState.tasks
               .map((task) => task.id == updatedTask.id ? updatedTask : task)
-              .toList();
+              .toList();*/
           await db.updateNote(
               event.id, event.localTitle, event.task.description);
           final localTasks = await db.getNotes();
-          emit(TasksLoaded(updatedTasks, localTasks));
+          emit(TasksLoaded(null, localTasks));
         }
       } catch (e) {
         emit(TasksError('Failed to update task'));
@@ -75,13 +84,13 @@ class TasksBloc extends Bloc<TasksEvent, TasksState> {
       try {
         final currentState = state;
         if (currentState is TasksLoaded) {
-          await deleteTask(event.taskId);
-          final updatedTasks = currentState.tasks
+          //await deleteTask(event.taskId);
+          /*final updatedTasks = currentState.tasks
               .where((task) => task.id != event.taskId)
-              .toList();
+              .toList();*/
           await db.deleteNote(event.localId);
           final localTasks = await db.getNotes();
-          emit(TasksLoaded(updatedTasks, localTasks));
+          emit(TasksLoaded(null, localTasks));
         }
       } catch (e) {
         emit(TasksError('Failed to delete task'));

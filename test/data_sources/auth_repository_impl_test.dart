@@ -3,7 +3,7 @@ import 'package:mockito/mockito.dart';
 import 'package:tasks_manager/data/models/auth_user_model.dart';
 import 'package:tasks_manager/data/repositories/auth_repository_impl.dart';
 
-import '../../mocks/mocks.mocks.dart';
+import '../mocks/mocks.mocks.dart';
 
 void main() {
   late MockAuthRemoteDataSource mockRemoteDataSource;

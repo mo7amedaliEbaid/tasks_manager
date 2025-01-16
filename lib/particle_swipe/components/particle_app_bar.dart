@@ -12,10 +12,12 @@ class ParticleAppBar extends StatelessWidget {
           SafeArea(
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 26),
-                child: Row(children: <Widget>[
-                  Icon(Icons.menu, size: 28),
-                  SizedBox(width: 18),
-                  Text('Inbox', style: TextStyle(fontFamily: 'OpenSans', fontSize: 21, letterSpacing: .3))
+                child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                //  Icon(Icons.menu, size: 28),
+                //  SizedBox(width: 18),
+                  Text('Tasks', style: TextStyle(fontFamily: 'OpenSans', fontSize: 21, letterSpacing: .3))
                 ]),
               )),
         ]),
