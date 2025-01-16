@@ -40,7 +40,8 @@ https://github.com/user-attachments/assets/7059d7fe-86ee-4d1f-beee-c46edcb03d5d
 ##  How to use
 - Clone the Repo
 - Run `flutter pub get`
-- Lanch on emulator or physical device
+- Launch on emulator or physical device
+- Run `flutter test` to run tests.
 
 ## Note 
 - App is written for android and with 
