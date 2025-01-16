@@ -3,7 +3,7 @@ import 'dart:math';
 
 import 'package:flutter/scheduler.dart';
 
-import '../particle_swipe/swipe_main.dart';
+import '../tasks/swipe_main.dart';
 import 'gooey_main.dart';
 
 class ContentCard extends StatefulWidget {

@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:tasks_manager/particle_swipe/swipe_main.dart';
+import 'package:tasks_manager/presentation/tasks/swipe_main.dart';
 
-import '../presentation/blocs/tasks/bloc.dart';
-import '../presentation/blocs/tasks/events.dart';
-import '../presentation/blocs/tasks/states.dart';
-import 'components/sprite_sheet.dart';
+import '../blocs/tasks/bloc.dart';
+import '../blocs/tasks/events.dart';
+import '../blocs/tasks/states.dart';
+import 'sprite_sheet.dart';
 import 'demo_data.dart';
 import 'list_model.dart';
 import 'particle_field.dart';

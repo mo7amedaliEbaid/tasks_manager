@@ -3,7 +3,7 @@ import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
 
-import '../shared/physics/constrained_scroll_physics.dart';
+import '../../shared/physics/constrained_scroll_physics.dart';
 import 'demo_data.dart';
 import 'message_card.dart';
 

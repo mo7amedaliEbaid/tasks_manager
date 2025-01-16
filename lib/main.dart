@@ -5,12 +5,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:tasks_manager/presentation/blocs/auth/auth_bloc.dart';
 import 'package:tasks_manager/presentation/blocs/tasks/bloc.dart';
-import 'package:tasks_manager/presentation/screens/login.dart';
+import 'package:tasks_manager/presentation/login/login.dart';
 import 'package:tasks_manager/shared/observer/app_observer.dart';
 import 'package:tasks_manager/shared/ui/app_scroll_behavior.dart';
 
 import 'di/di.dart';
-import 'goey_edge/demo.dart';
+import 'presentation/on_boarding/demo.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

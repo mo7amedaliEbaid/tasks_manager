@@ -5,7 +5,7 @@ import 'package:tasks_manager/presentation/blocs/tasks/bloc.dart';
 import 'package:tasks_manager/presentation/blocs/tasks/events.dart';
 import 'package:tasks_manager/presentation/blocs/tasks/states.dart';
 
-import 'components/particle_app_bar.dart';
+import 'particle_app_bar.dart';
 import 'demo.dart';
 
 class SwipeScreen extends StatelessWidget {

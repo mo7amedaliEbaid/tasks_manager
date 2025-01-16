@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../goey_edge/demo.dart';
+import '../on_boarding/demo.dart';
 import '../blocs/auth/auth_bloc.dart';
 import '../blocs/auth/auth_events.dart';
 import '../blocs/auth/auth_states.dart';
